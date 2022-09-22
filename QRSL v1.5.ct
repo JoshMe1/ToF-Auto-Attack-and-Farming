@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>26123</ID>
+      <Description>"Tower of Fantasy v1.5"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">{ Game   : QRSL.exe
+  Date   : 2022-09-15
+  Author : Apin
+
+  Credits:
+  Cake-san,
+  yuina,
+  emoisback,
+  nandakoin,
+  TheErel,
+  cracksuxer200,
+  xczack7r,
+  MadcOrange,
+  SunBeam.
+}
+
+define(address,"QRSL.exe"+33304BA)
+define(bytes,48 8B D0 48 8B 1E)
+define(address2,"QRSL.exe"+1C50150)
+define(bytes2,F3 0F 10 81 FC 02 00 00)
+define(address4,"QRSL.exe"+323C533)
+define(bytes4,0F 28 C2 74 12)
+define(address5,"QRSL.exe"+32D448E)
+define(bytes5,F3 0F 10 83 08 02 00 00)
+define(address6,"QRSL.exe"+435D222)
+define(bytes6,8B 81 38 11 00 00)
+define(address7,"QRSL.exe"+4360CA7)
+define(bytes7,0F 2F 83 C4 10 00 00)
+define(address8,"QRSL.exe"+3D25F07)
+define(bytes8,F3 0F 10 80 50 16 00 00)
+define(address9,"QRSL.exe"+337ACD6)
+define(bytes9,F2 0F 10 87 3C 01 00 00)
+define(address11,"QRSL.exe"+3D785C6)
+define(bytes11,8B 81 58 03 00 00)
+
+[ENABLE]
+
+aobscanmodule(nocd,QRSL.exe,74 ? 83 79 08 ? 7F)
+registersymbol(nocd)
+aobscanmodule(dodge,QRSL.exe,2B 11 8B 0D ? ? ? ? F7 EA 0F 29 ? ? ? C1 FA ? 8B C2 C1 E8 ? 03 D0 65 48 ? ? ? ? ? ? ? 48 8B)
+registersymbol(dodge)
+aobscanmodule(showesp,QRSL.exe,77 ? 44 0F ? ? ? ? ? ? 77 ? F3 0F)
+registersymbol(showesp)
+aobscanmodule(uldrill,QRSL.exe,75 ? 48 8B ? 48 8B ? FF 90 ? ? ? ? 84 C0 0F 84 ? ? ? ? 80 BF 70 01 00 00)
+registersymbol(uldrill)
+assert(address,bytes)
+alloc(newmem,$1000,"QRSL.exe"+33304BA)
+alloc(apawn,8)
+label(code)
+label(return)
+registersymbol(apawn)
+
+newmem:
+  mov [apawn],rcx
+code:
+  mov rdx,rax
+  mov rbx,[rsi]
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+assert(address2,bytes2)
+alloc(newmem2,$1000,"QRSL.exe"+1C50150)
+alloc(worldspeed,8)
+label(code2)
+label(return2)
+registersymbol(worldspeed)
+
+newmem2:
+  mov [worldspeed],rcx
+code2:
+  movss xmm0,[rcx+000002FC]
+  jmp return2
+
+address2:
+  jmp newmem2
+  nop 3
+return2:
+
+assert(address4,bytes4)
+alloc(newmem4,$1000,"QRSL.exe"+323C533)
+alloc(weptypes,4)
+label(code4)
+label(return4)
+registersymbol(weptypes)
+
+newmem4:
+  cmp byte ptr [weptypes],1
+  jne code4
+  comiss xmm0,xmm0
+  ja QRSL.exe+323C54A
+  jmp return4
+
+code4:
+  comiss xmm0,xmm3
+  ja QRSL.exe+323C54A
+  jmp return4
+  weptypes:
+  db 0
+
+address4:
+  jmp newmem4
+return4:
+
+assert(address5,bytes5)
+alloc(newmem5,$1000,"QRSL.exe"+32D448E)
+label(code5)
+label(return5)
+label(fovvalue)
+registersymbol(fovvalue)
+
+newmem5:
+
+code5:
+  movss xmm0,[fovvalue]
+  jmp return5
+  fovvalue:
+  dd (float)75
+
+address5:
+  jmp newmem5
+  nop 3
+return5:
+
+assert(address6,bytes6)
+alloc(newmem6,$1000,"QRSL.exe"+435D222)
+label(code6)
+label(return6)
+label(lockammo)
+registersymbol(lockammo)
+
+newmem6:
+  cmp byte ptr[lockammo],1
+  jne @f
+  mov [rcx+00001138],#41
+code6:
+  mov eax,[rcx+00001138]
+  jmp return6
+  lockammo:
+  db 0
+
+address6:
+  jmp newmem6
+  nop
+return6:
+
+assert(address7,bytes7)
+alloc(newmem7,$1000,"QRSL.exe"+4360CA7)
+label(code7)
+label(return7)
+label(reload)
+registersymbol(reload)
+
+newmem7:
+  cmp byte ptr[reload],1
+  jne @f
+  mov [rbx+000010C4],0
+code7:
+  comiss xmm0,[rbx+000010C4]
+  jmp return7
+  reload:
+  db 0
+
+address7:
+  jmp newmem7
+  nop 2
+return7:
+
+assert(address8,bytes8)
+alloc(newmem8,$1000,"QRSL.exe"+3D25F07)
+alloc(pstat,8)
+label(code8)
+label(return8)
+registersymbol(pstat)
+
+newmem8:
+  mov [pstat],rax
+code8:
+  movss xmm0,[rax+00001650]
+  jmp return8
+
+address8:
+  jmp newmem8
+  nop 3
+return8:
+
+assert(address9,bytes9)
+alloc(newmem9,$1000,"QRSL.exe"+337ACD6)
+label(code9)
+label(return9)
+label(sizeup)
+registersymbol(sizeup)
+
+newmem9:
+  cmp [rdi+E0],#15
+  jne @f
+  mov [sizeup],rdi
+code9:
+  movsd xmm0,[rdi+0000013C]
+  jmp return9
+  sizeup:
+  db
+
+address9:
+  jmp newmem9
+  nop 3
+return9:
+
+assert(address11,bytes11)
+alloc(newmem11,$1000,"QRSL.exe"+3D785C6)
+alloc(singlemode,8)
+label(code11)
+label(return11)
+registersymbol(singlemode)
+
+newmem11:
+
+code11:
+  mov [singlemode],rcx
+  mov eax,[rcx+00000358]
+  jmp return11
+
+address11:
+  jmp newmem11
+  nop
+return11:
+
+[DISABLE]
+
+address:
+db bytes
+address2:
+db bytes2
+address4:
+db bytes4
+address5:
+db bytes5
+address6:
+db bytes6
+address7:
+db bytes7
+address8:
+db bytes8
+address9:
+db bytes9
+address11:
+db bytes11
+
+dealloc(*)
+unregistersymbol(*)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>26159</ID>
+          <Description>"[ Green = Single-player activity contents and mission only ]"</Description>
+          <Color>008000</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26243</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26151</ID>
+          <Description>"God Mode"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">13:ON
+141:OFF
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>008000</Color>
+          <VariableType>Byte</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>61</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26173</ID>
+          <Description>"Freeze Mobs"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">1:ON
+0:OFF
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>008000</Color>
+          <VariableType>Byte</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>13E7</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26176</ID>
+          <Description>"No Fall DMG"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:ON
+1:OFF
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>008000</Color>
+          <VariableType>Byte</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>18A0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26212</ID>
+          <Description>"Quick Weapon Change"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:ON
+3:OFF
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>008000</Color>
+          <VariableType>4 Bytes</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>2EA8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>88015</ID>
+          <Description>"Energy"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <Color>008000</Color>
+          <VariableType>Float</VariableType>
+          <Address>pstat</Address>
+          <Offsets>
+            <Offset>1650</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>88014</ID>
+          <Description>"Skill No Cooldown"</Description>
+          <Color>008000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+nocd:
+db 75 06
+
+[DISABLE]
+nocd:
+db 74 06
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26309</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26342</ID>
+          <Description>"Inf. Ammo"</Description>
+          <Color>008000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+lockammo:
+db 1
+ 
+[DISABLE]
+lockammo:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26344</ID>
+          <Description>"No Reload/Recharge"</Description>
+          <Color>008000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+reload:
+db 1
+ 
+[DISABLE]
+reload:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26237</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26451</ID>
+          <Description>"Player Stats"</Description>
+          <Color>008000</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26221</ID>
+              <Description>"Physical Attack"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>160C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26222</ID>
+              <Description>"Flame Attack"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1610</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26223</ID>
+              <Description>"Frost Attack"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1618</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26224</ID>
+              <Description>"Volt Attack"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1614</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26225</ID>
+              <Description>"Superpower Attack"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>161C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26238</ID>
+              <Description>"---------------------------"</Description>
+              <Color>008000</Color>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26233</ID>
+              <Description>"Critical"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1634</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26234</ID>
+              <Description>"Critical Damage %"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1668</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26236</ID>
+              <Description>"Critical Rate %"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>16B0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26161</ID>
+              <Description>"---------------------------"</Description>
+              <Color>008000</Color>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26405</ID>
+              <Description>"Energy"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1650</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26226</ID>
+              <Description>"Health/Hit Points"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1604</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26227</ID>
+              <Description>"Endurance"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1608</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26235</ID>
+              <Description>"Endurance Regen %"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>166C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26239</ID>
+              <Description>"---------------------------"</Description>
+              <Color>008000</Color>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26228</ID>
+              <Description>"Physical Resistance"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1620</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26229</ID>
+              <Description>"Flame Resistance"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1624</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26230</ID>
+              <Description>"Frost Resistance"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>162C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26231</ID>
+              <Description>"Volt Resistance"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1628</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26232</ID>
+              <Description>"Superpower Resistance"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>pstat</Address>
+              <Offsets>
+                <Offset>1630</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26308</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26331</ID>
+          <Description>"Attack Speed"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+weptypes:
+db 2
+
+[DISABLE]
+weptypes:
+db 0
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26379</ID>
+              <Description>"No Moving"</Description>
+              <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">1:OFF
+0:ON
+</DropDownList>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>singlemode</Address>
+              <Offsets>
+                <Offset>160</Offset>
+                <Offset>790</Offset>
+                <Offset>780</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26127</ID>
+          <Description>"Player Speedhack"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>1A60</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26321</ID>
+          <Description>"Game Speedhack"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>worldspeed</Address>
+          <Offsets>
+            <Offset>2FC</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26403</ID>
+          <Description>"Movement Speed (Stand/Crouch)"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pstat</Address>
+          <Offsets>
+            <Offset>1640</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26404</ID>
+          <Description>"Mount Speed"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pstat</Address>
+          <Offsets>
+            <Offset>1644</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26166</ID>
+          <Description>"Swim Speed"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>25E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26324</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26341</ID>
+          <Description>"Inf. Dodge"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+dodge:
+db 90 90
+
+[DISABLE]
+dodge:
+db 2B 11
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>88016</ID>
+          <Description>"Inf. Drill (Combine w/ Floating)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+uldrill:
+db 74 14
+
+[DISABLE]
+uldrill:
+db 75 14
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26169</ID>
+          <Description>"Floating (Recommend to set hotkey)"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">1:OFF
+3:OFF
+0:ON
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Byte</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>170</Offset>
+            <Offset>298</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26172</ID>
+          <Description>"Inf. Jump (Spam Spacebar)"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Byte</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>358</Offset>
+          </Offsets>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Set Value</Action>
+              <Keys>
+                <Key>32</Key>
+              </Keys>
+              <Value>0</Value>
+              <ID>0</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26146</ID>
+          <Description>"Player Gravity"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>25B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26325</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26402</ID>
+          <Description>"Box/Core ESP"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+showesp:
+db EB 58
+ 
+[DISABLE]
+showesp:
+db 77 58
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26448</ID>
+          <Description>"Field Of View"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>fovvalue</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26346</ID>
+          <Description>"Player Size"</Description>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26336</ID>
+              <Description>"Height"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>sizeup</Address>
+              <Offsets>
+                <Offset>140</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26335</ID>
+              <Description>"Width"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>sizeup</Address>
+              <Offsets>
+                <Offset>13C</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26450</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26444</ID>
+          <Description>"Teleport Save/Load (PageUp/PageDown)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+if syntaxcheck then return end
+
+[ENABLE]
+
+function checkKeys()
+
+ppos = readPointer(getAddressSafe'[apawn]'+0xCC8)+0x810
+
+--save
+if isKeyPressed(VK_PRIOR) then
+speak('save')
+posX = readFloat(ppos)
+posY = readFloat(ppos+8)
+posZ = readFloat(ppos+4)
+end
+--Load
+if isKeyPressed(VK_NEXT) then
+speak('teleport')
+writeFloat(ppos, posX)
+writeFloat(ppos, posY)
+writeFloat(ppos, posZ)
+end
+end
+
+t=createTimer(nil)
+timer_setInterval(t, 10)
+timer_onTimer(t, checkKeys)
+timer_setEnabled(t, true)
+
+[DISABLE]
+
+t.destroy()
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26442</ID>
+          <Description>"Teleport by Value"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+if syntaxcheck then return end
+ 
+[ENABLE]
+ 
+xAddy = readPointer(getAddressSafe'[apawn]'+0x2A0)+0x1E0
+ 
+currentX = readFloat(xAddy)
+currentY = readFloat(xAddy+8)
+currentZ = readFloat(xAddy+4)
+ 
+destX = tonumber(inputQuery("Teleport","New Pos X:", currentX))
+destY = tonumber(inputQuery("Teleport","New Pos Y:", currentY))
+destZ = tonumber(inputQuery("Teleport","New Pos Z:", currentZ))
+ 
+step = 420.0
+ 
+cond = true
+cond2 = true
+cond3 = true
+ 
+if currentX == destX then cond = false end
+if currentY == destY then cond2 = false end
+if currentZ == destZ then cond3 = false end
+ 
+while (cond or cond2 or cond3)
+do
+    currentX = readFloat(xAddy)
+    currentY = readFloat(xAddy+8)
+    currentZ = readFloat(xAddy+4)
+ 
+    if not cond or math.sqrt((currentX - destX) ^ 2) &lt;= step then cond = false
+    elseif currentX &gt; destX then currentX = currentX - step writeFloat(xAddy, currentX)
+    elseif currentX &lt; destX then currentX = currentX + step writeFloat(xAddy, currentX)
+    end
+ 
+    if not cond2 or math.sqrt((currentY - destY) ^ 2) &lt;= step then cond2 = false
+    elseif currentY &gt; destY then currentY = currentY - step writeFloat(xAddy+8, currentY)
+    elseif currentY &lt; destY then currentY = currentY + step writeFloat(xAddy+8, currentY)
+    end
+ 
+    if not cond3 or math.sqrt((currentZ - destZ) ^ 2) &lt;= step then cond3 = false
+    elseif currentZ &gt; destZ then currentZ = currentZ - step writeFloat(xAddy+4, currentZ)
+    elseif currentZ &lt; destZ then currentZ = currentZ + step writeFloat(xAddy+4, currentZ)
+    end
+    sleep(1)
+end
+ 
+ 
+[DISABLE]
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26445</ID>
+              <Description>"Pos X"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>apawn</Address>
+              <Offsets>
+                <Offset>1E0</Offset>
+                <Offset>2A0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26408</ID>
+              <Description>"Pos Y"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>apawn</Address>
+              <Offsets>
+                <Offset>1E8</Offset>
+                <Offset>2A0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26409</ID>
+              <Description>"Pos Z"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>apawn</Address>
+              <Offsets>
+                <Offset>1E4</Offset>
+                <Offset>2A0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26447</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26185</ID>
+          <Description>"Player Level"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>singlemode</Address>
+          <Offsets>
+            <Offset>690</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26242</ID>
+          <Description>"-------------------------------------------"</Description>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26401</ID>
+      <Description>"&lt; Link to my post"</Description>
+      <Options moHideChildren="1"/>
+      <Color>FF0080</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+ShellExecute('https://www.unknowncheats.me/forum/tower-of-fantasy/514327-tower-fantasy-cheat-table.html')
+{$asm}
+nop
+[DISABLE]
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>attachlist=getAutoAttachList()
+stringlist_add(attachlist,"QRSL.exe");
+
+function cycleFullCompact(sender,force) local state = not(compactmenuitem.Caption == 'Compact View Mode'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact View Mode' or 'Full View Mode'; getMainForm().Splitter1.Visible = state; getMainForm().Panel5.Visible    = state; end; function addCompactMenu() if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact View Mode'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true)
+
+function onOpenProcess()
+  local timer = createTimer(nil, false)
+  timer.Interval = 8000
+  timer.OnTimer = function(timer)
+    local list = getAddressList()
+    local mem = list.getMemoryRecordByDescription("Tower of Fantasy v1.5")
+    mem.Active = true
+    timer.Destroy()
+  end
+  timer.Enabled = true
+end
+
+</LuaScript>
+</CheatTable>
